@@ -11,18 +11,18 @@ app.post("/minesweep", verifyKeyMiddleware(process.env.PUBLIC_KEY), async (req, 
   const { body } = req;
   const { data, member, user, type } = body;
   if (type == 2) {
-    if (data.name !== "minesweeper") return;
+    if (data.name !== "minisweeper") return;
     res.send({ type: 5 })
-    const board = await genBoard(5, 5, 5, body.member.user.id);
+    const board = await genBoard(5, 5, 5, body);
     sendBoard(board, body);
   }
   if (type == 3) {
 
     const custom_id = JSON.parse(body.data.custom_id);
-    if (custom_id.i !== body.member.user.id) { return res.send({ type: 4, data: { content: "Start your own game by using the /minesweeper command!", flags: 64 } }) };
+    if (custom_id.i !== body.member.user.id) { return res.send({ type: 4, data: { content: "💣 Start your own game by using the /minisweeper command!", flags: 64 } }) };
     res.send({ type: 6 })
     if (custom_id?.again) {
-      const board = await genBoard(5, 5, 5, body.member.user.id);
+      const board = await genBoard(5, 5, 5, body);
       return sendBoard(board, body);
     }
     editComponents(body);

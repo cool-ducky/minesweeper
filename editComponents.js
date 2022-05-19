@@ -1,6 +1,8 @@
 const fetch = require("node-fetch");
 module.exports = async (body) => {
-
+  
+const data = JSON.parse(body.data.custom_id);
+  
   const checkReaction = async () => {
     const res = await fetch(`https://discord.com/api/v9/channels/${message.channel_id}/messages/${message.id}/reactions/%F0%9F%9A%A9`, {
       method: "get",
@@ -18,6 +20,7 @@ module.exports = async (body) => {
   };
 
   const edit = async (message, loss = false, win = false) => {
+    message.content = "⌨️ Coded by **ducky#8930**."
     if (!loss) {
       let tilesShown = 0;
       for (const rows of message.components) {
@@ -37,8 +40,11 @@ module.exports = async (body) => {
         });
       });
     };
-    if (loss) { message.content = "Aw, you found a 💣 bomb!\nClick any button to play again." };
-    if (win) { message.content = `🚩 Good job! You found all the mines!\nClick any button to play again.` };
+    if (loss) { message.content = "💣 Aw, you found a bomb!\n 👍 Click any button to play again." };
+    if (win) { 
+      const timeTook = (Math.floor(new Date().getTime() / 1000) - data.t);
+      message.content = `🚩 Good job! You found all the mines!\n⌛ You took **${timeTook} seconds**!\n👍 Click any button to play again.` 
+    };
     const res = await fetch(`https://discord.com/api/v9/webhooks/${body.application_id}/${body.token}/messages/@original`, {
       method: "patch",
       body: JSON.stringify({
@@ -49,7 +55,7 @@ module.exports = async (body) => {
     });
   };
 
-  const data = JSON.parse(body.data.custom_id);
+  
   const { message } = body;
   const reacted = await checkReaction();
   if (reacted) {

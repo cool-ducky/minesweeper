@@ -30,7 +30,7 @@ module.exports = async (board, body) => {
     method: "patch",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      content: "made by ducky#8930",
+      content: "💣 Find the **5 bombs** to win.\n🚩 Use the flag reaction to flag mines.\n👉 *If there is no flag reaction, make sure to enable reactions.*\n📕 Learn to play minesweeper [here](<https://minesweepergame.com/strategy/how-to-play-minesweeper.php>)!",
       components: actionRows
     })
   });

@@ -1,4 +1,4 @@
-module.exports = (mines, rows, columns, id) => {
+module.exports = (mines, rows, columns, body) => {
   let board = [];
   let rowsCreated = 0;
   let columnsCreated = 1;
@@ -13,7 +13,8 @@ module.exports = (mines, rows, columns, id) => {
       l: 0,//the label of the tile
       c: false, //clicked
       f: false, //flagged
-      i: id //id of user
+      i: body.member.user.id, //id of user
+      t: Math.floor(new Date().getTime() / 1000)
     };
     rowArray.push(tile);
     if (rowsCreated + 1 > rows) {
