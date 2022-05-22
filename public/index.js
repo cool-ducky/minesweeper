@@ -45,8 +45,7 @@ reveal.onclick = function() {
 let share = document.getElementById("share");
 share.onclick = function() {
   let editUrl = window.location.href.split("?")
-  //navigator.clipboard.writeText(editUrl[0] + "share/?" + editUrl[1]);
-  navigator.clipboard.writeText(window.location.href)
+  navigator.clipboard.writeText(editUrl[0] + "share/?" + editUrl[1]);
   share.innerHTML = "Copied to 📋";
   share.style["background-color"] = "#43b581"
 }
