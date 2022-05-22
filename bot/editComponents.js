@@ -57,10 +57,10 @@ const data = JSON.parse(body.data.custom_id);
         });
       });
     };
-    if (loss) { message.content = `💣 Aw, you found a bomb!\n 👍 Click any button to play again. ${url}` };
+    if (loss) { message.content = `💣 Aw, you found a bomb!\n 👍 Click any button to play again.\n 👀 [View the rest of the board!](<${url}>)` };
     if (win) { 
       const timeTook = (Math.floor(new Date().getTime() / 1000) - data.t);
-      message.content = `🚩 Good job! You found all the mines!\n⌛ You took **${timeTook} seconds**!\n👍 Click any button to play again. ${url}` 
+      message.content = `🚩 Good job! You found all the mines!\n⌛ You took **${timeTook} seconds**!\n👍 Click any button to play again.\n 🔗 [Share your board!](<${url}>)` 
     };
     const res = await fetch(`https://discord.com/api/v9/webhooks/${body.application_id}/${body.token}/messages/@original`, {
       method: "patch",
