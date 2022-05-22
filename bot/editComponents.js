@@ -31,19 +31,36 @@ const data = JSON.parse(body.data.custom_id);
       };
       if (tilesShown == 20) { win = true; };
     };
+    let url = process.env.URL + "/?board=";
     if (loss || win) {
       let again = 0; //custom ids need to each be different
       message.components.forEach((rows, rowIndex) => {
         rows.components.forEach((tile, tileIndex) => {
+          let custom_id = JSON.parse(tile.custom_id);
+          if(tile.label == " ") {
+            if(custom_id.m) {
+              url += 20 + "-";
+            } else {
+            url += custom_id.l + 10 + "-";
+            }
+          } else {
+            if(!custom_id.f && !custom_id.m) {
+              url += custom_id.l + "-";
+            } else {
+              if(custom_id.m && !custom_id.f) url += "m-"
+              if(custom_id.f) url += "f-"
+            }
+          }
           message.components[rowIndex].components[tileIndex].custom_id = JSON.stringify({i: body.member.user.id, again: true, number: again})
           again++;
+
         });
       });
     };
-    if (loss) { message.content = "💣 Aw, you found a bomb!\n 👍 Click any button to play again." };
+    if (loss) { message.content = `💣 Aw, you found a bomb!\n 👍 Click any button to play again. ${url}` };
     if (win) { 
       const timeTook = (Math.floor(new Date().getTime() / 1000) - data.t);
-      message.content = `🚩 Good job! You found all the mines!\n⌛ You took **${timeTook} seconds**!\n👍 Click any button to play again.` 
+      message.content = `🚩 Good job! You found all the mines!\n⌛ You took **${timeTook} seconds**!\n👍 Click any button to play again. ${url}` 
     };
     const res = await fetch(`https://discord.com/api/v9/webhooks/${body.application_id}/${body.token}/messages/@original`, {
       method: "patch",

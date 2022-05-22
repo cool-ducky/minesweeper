@@ -29,17 +29,15 @@ body {
 
 
 
-.buttons {
+.buttons, .bottom-buttons {
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
 
-.buttons button {
-  width: 6em;
+.buttons button, .bottom-buttons button {
   border-radius: 3px;
   font-size: 14px;
-  margin: 6px 8px 0px 4px;
   padding: 10px 30px 10px 30px;
   border: none;
   background-color: #4f545c;
@@ -49,6 +47,47 @@ body {
   display: inline-block;
   cursor: pointer;
   font-family: "whitney";
+}
+
+.buttons button {
+  cursor: default;
+  width: 6em;
+  margin: 6px 8px 0px 4px;
+  height: 2.8em;
+}
+
+button:hover {
+  filter: brightness(85%);
+  transition: all 500ms ease;
+}
+
+.reveal {
+  width: 11em;
+  margin: 20px 8px 0px 4px;
+}
+
+.share {
+  width: 9em;
+}
+
+.footer {
+  margin-top: 8%;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.footer h1 {
+  font-size: 150%;
+  font-family: "demibold"
+}
+
+.footer a:hover {
+  text-decoration: none;
+  color: #de0552;
+  transition: all 500ms ease;
 }
 
 @media screen and (max-device-width: 480px) and (orientation: portrait){

@@ -36,6 +36,12 @@ app.get("/", (req, res) => {
   res.sendFile('index.html', {root: "./public" })
 })
 
+const shareEmbed = require("./bot/shareEmbed")
+
+app.get("/share", (req, res) => {
+  shareEmbed(req, res)
+})
+
 const PORT = process.env.PORT || 500
 app.listen(PORT);
 
