@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "demibold";
+  src: url("./demibold.otf");
+}
+
+@font-face {
+  font-family: "whitney";
+  src: url("./whitney.otf");
+}
+
+body {
+  background-color: #2C2F33;
+}
+
+.header, .footer {
+  padding: 0% 10% 0% 10%;
+  text-align: center;
+}
+
+.header h1 {
+  color: #FFFFFF;
+  font-size: 400%;
+  font-family: "whiteny"
+}
+
+.header h2 {
+  margin-top: 0px;
+}
+
+
+
+.buttons {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+.buttons button {
+  width: 6em;
+  border-radius: 3px;
+  font-size: 14px;
+  margin: 6px 8px 0px 4px;
+  padding: 10px 30px 10px 30px;
+  border: none;
+  background-color: #4f545c;
+  border: none;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  font-family: "whitney";
+}
+
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  .header h1 {
+    font-size: 200%;
+  }
+  .buttons {
+    width: 80%;
+    margin: 0px auto;
+  }
+  .buttons button {
+    height: 3em;
+    width: 3em;
+    padding: 5px 18px 5px 18px;
+  }
+}

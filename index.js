@@ -1,11 +1,13 @@
+const path = require("path");
 const express = require("express");
 const app = express();
+app.use(express.static(path.join(__dirname, 'public')));
 
 const { verifyKeyMiddleware } = require("discord-interactions");
 
-const genBoard = require("./genBoard");
-const sendBoard = require("./sendBoard");
-const editComponents = require("./editComponents");
+const genBoard = require("./bot/genBoard");
+const sendBoard = require("./bot/sendBoard");
+const editComponents = require("./bot/editComponents");
 
 app.post("/minesweep", verifyKeyMiddleware(process.env.PUBLIC_KEY), async (req, res) => {
   const { body } = req;
@@ -28,6 +30,11 @@ app.post("/minesweep", verifyKeyMiddleware(process.env.PUBLIC_KEY), async (req, 
     editComponents(body);
   };
 });
+
+
+app.get("/", (req, res) => {
+  res.sendFile('index.html', {root: "./public" })
+})
 
 const PORT = process.env.PORT || 500
 app.listen(PORT);
